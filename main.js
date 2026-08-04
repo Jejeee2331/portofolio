@@ -88,11 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typing) {
 
         const words = [
-            "UI/UX Designer",
-            "Graphic Designer",
             "Videographer",
             "Video Editor",
-            "Creative Designer"
+            "Photo Editing",
+            "UI/UX Designer",
+            "Desain Grafis"
         ];
 
         let wordIndex = 0;
