@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Photo Editing Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #0d0d0d;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        .top-bar .title {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+        }
+        .close-btn {
+            position: absolute;
+            left: 20px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            transition: background 0.3s;
+        }
+        .close-btn:hover { background: rgba(255,255,255,0.35); }
+        .indicator-top {
+            position: absolute;
+            right: 20px;
+            font-size: 13px;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            padding: 60px 80px;
+        }
+        .slide {
+            display: none;
+            max-width: 100%;
+            max-height: calc(100vh - 80px);
+            border-radius: 10px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+            animation: fadeIn 0.4s ease;
+            object-fit: contain;
+        }
+        .slide.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 22px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.4); }
+        .prev-btn { left: 16px; }
+        .next-btn { right: 16px; }
+
+        /* Thumbnail strip */
+        .thumbs {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 8px;
+            padding: 10px 20px;
+            overflow-x: auto;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            scrollbar-width: none;
+        }
+        .thumbs::-webkit-scrollbar { display: none; }
+        .thumb {
+            width: 52px;
+            height: 52px;
+            object-fit: cover;
+            border-radius: 6px;
+            opacity: 0.5;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            border: 2px solid transparent;
+        }
+        .thumb.active {
+            opacity: 1;
+            border-color: #7c6ef5;
+            transform: scale(1.1);
+        }
+        .thumb:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="#" onclick="window.close();" class="close-btn">← Close</a>
+        <span class="title">Cinematic Photo Editing</span>
+        <span class="indicator-top" id="indicator">1 / 13</span>
+    </div>
+
+    <div class="slider-wrapper">
+        <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.13.jpeg" class="slide active" alt="Edit 1">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.18 (1).jpeg" class="slide" alt="Edit 2">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.18.jpeg" class="slide" alt="Edit 3">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.19.jpeg" class="slide" alt="Edit 4">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.20 (1).jpeg" class="slide" alt="Edit 5">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.20.jpeg" class="slide" alt="Edit 6">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.21 (1).jpeg" class="slide" alt="Edit 7">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.21.jpeg" class="slide" alt="Edit 8">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.23 (1).jpeg" class="slide" alt="Edit 9">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.23.jpeg" class="slide" alt="Edit 10">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.24.jpeg" class="slide" alt="Edit 11">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.25 (1).jpeg" class="slide" alt="Edit 12">
+        <img src="asets/Editing Foto/WhatsApp Image 2026-08-04 at 21.53.25.jpeg" class="slide" alt="Edit 13">
+
+        <button class="nav-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="thumbs" id="thumbStrip"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('indicator');
+        const thumbStrip = document.getElementById('thumbStrip');
+        const total = slides.length;
+
+        // Build thumbnails
+        slides.forEach((slide, i) => {
+            const thumb = document.createElement('img');
+            thumb.src = slide.src;
+            thumb.className = 'thumb' + (i === 0 ? ' active' : '');
+            thumb.addEventListener('click', () => goTo(i));
+            thumbStrip.appendChild(thumb);
+        });
+
+        function getThumbs() { return document.querySelectorAll('.thumb'); }
+
+        function goTo(index) {
+            slides[currentSlide].classList.remove('active');
+            getThumbs()[currentSlide].classList.remove('active');
+            currentSlide = (index + total) % total;
+            slides[currentSlide].classList.add('active');
+            getThumbs()[currentSlide].classList.add('active');
+            getThumbs()[currentSlide].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            indicator.innerText = (currentSlide + 1) + ' / ' + total;
+        }
+
+        function changeSlide(dir) { goTo(currentSlide + dir); }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+        });
+    </script>
+</body>
+</html>
