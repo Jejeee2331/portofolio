@@ -148,6 +148,37 @@
             background: #000;
         }
 
+        /* ── PLAYLIST TABS ── */
+        .playlist {
+            max-width: 960px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .playlist-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 18px;
+            color: rgba(255,255,255,0.55);
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .playlist-btn:hover,
+        .playlist-btn.active {
+            background: rgba(124,110,245,0.2);
+            border-color: rgba(124,110,245,0.5);
+            color: #c4b5fd;
+        }
+        .playlist-btn i { font-size: 16px; }
+
         /* ── INFO SECTION ── */
         .info-section {
             max-width: 960px;
@@ -273,12 +304,36 @@
     <div class="video-wrap">
         <div class="video-glow"></div>
         <div class="video-frame">
-            <video controls preload="metadata">
-                <source src="asets/Project-Lama.mp4" type="video/mp4">
+            <video id="mainVideo" controls preload="metadata">
+                <source id="videoSource" src="asets/Motion-Graph/Motion-Graphics.mp4" type="video/mp4">
                 Browser Anda tidak mendukung pemutaran video.
             </video>
         </div>
     </div>
+
+    <!-- PLAYLIST -->
+    <div class="playlist">
+        <button class="playlist-btn active" id="btn1" onclick="switchVideo('asets/Motion-Graph/Motion-Graphics.mp4', 'Motion Graphics & Transition Effects', this)">
+            <i class='bx bx-play-circle'></i>
+            Motion Graphics & Transition
+        </button>
+        <button class="playlist-btn" id="btn2" onclick="switchVideo('asets/Motion-Graph/Project-Lama.mp4', 'Project Lama – Motion Edit', this)">
+            <i class='bx bx-play-circle'></i>
+            Project Lama – Motion Edit
+        </button>
+    </div>
+
+    <script>
+        function switchVideo(src, title, btn) {
+            const video = document.getElementById('mainVideo');
+            const source = document.getElementById('videoSource');
+            source.src = src;
+            video.load();
+            video.play();
+            document.querySelectorAll('.playlist-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
 
     <!-- INFO CARDS -->
     <div class="info-section">
