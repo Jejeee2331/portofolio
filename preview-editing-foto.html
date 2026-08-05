@@ -8,7 +8,7 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #0d0d0d;
+            background: #080810;
             color: #fff;
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -26,9 +26,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 20px;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
+            padding: 14px 24px;
+            background: rgba(8, 8, 16, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             z-index: 100;
         }
         .top-bar .title {
@@ -137,9 +138,15 @@
             transform: scale(1.1);
         }
         .thumb:hover { opacity: 0.85; }
+
+        /* Ambient BG */
+        .bg-orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.12; pointer-events: none; z-index: -1; }
+        .orb1 { width: 400px; height: 400px; background: #7c6ef5; top: -100px; right: -80px; }
+        .orb2 { width: 300px; height: 300px; background: #a855f7; bottom: 100px; left: -80px; }
     </style>
 </head>
 <body>
+    <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
     <div class="top-bar">
         <a href="#" onclick="window.close();" class="close-btn">← Close</a>
         <span class="title">Cinematic Photo Editing</span>
