@@ -131,7 +131,6 @@ body.dark{
 .section-title span.gradient-text{
     background: linear-gradient(90deg, #0ea5e9, #1d4ed8, #8b5cf6);
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: none;
     letter-spacing: normal;
