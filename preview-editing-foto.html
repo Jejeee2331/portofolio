@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinematic Photo Editing Preview</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -33,23 +34,17 @@
             z-index: 100;
         }
         .top-bar .title {
-            font-size: 17px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: #e0e0e0;
+            font-size: 15px; font-weight: 600;
+            background: linear-gradient(135deg, #a78bfa, #7c6ef5, #c4b5fd);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .close-btn {
-            position: absolute;
-            left: 20px;
-            color: #fff;
-            text-decoration: none;
-            background: rgba(255,255,255,0.15);
-            padding: 7px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            transition: background 0.3s;
+            position: absolute; left: 24px; color: #c0b8ff; text-decoration: none;
+            background: rgba(124,110,245,0.15); padding: 7px 16px; border-radius: 8px;
+            font-size: 13px; border: 1px solid rgba(124,110,245,0.3);
+            transition: all 0.3s; display: flex; align-items: center; gap: 6px;
         }
-        .close-btn:hover { background: rgba(255,255,255,0.35); }
+        .close-btn:hover { background: rgba(124,110,245,0.35); border-color: rgba(124,110,245,0.7); }
         .indicator-top {
             position: absolute;
             right: 20px;
@@ -148,7 +143,7 @@
 <body>
     <div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
     <div class="top-bar">
-        <a href="#" onclick="window.close();" class="close-btn">← Close</a>
+        <a href="#" onclick="window.close();" class="close-btn"><i class='bx bx-arrow-back'></i> Close</a>
         <span class="title">Cinematic Photo Editing</span>
         <span class="indicator-top" id="indicator">1 / 10</span>
     </div>
